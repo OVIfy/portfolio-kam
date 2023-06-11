@@ -1,0 +1,58 @@
+---
+import Button from '@compo/Button.astro'
+import IconDeck from '@compo/IconDeck.astro'
+---
+
+<section id="contact" class="text-secondary-color px-4 md:mx-[80px]">
+    <div class="lg:flex justify-center relative">
+        <div class="relative bg-[#151515] pt-6 px-6 lg:flex lg:items-center lg:pr-[60px] xl:pr-[80px] lg:pl-[80px] xl:pl-[132px] lg:pt-[72px] xl:pt-[122px] lg:pb-[48px] lg:gap-[32px] max-w-[1066px]"> 
+            <div class="lg:w-[50%]">
+                <h2 class="text-[24px] font-bold leading-[32px] mb-6">You are a <span class="text-neutral-color underline">message</span> away from getting the best service ;)</h2>
+                <p class="text-[14px] opacity-50 mb-4">We’re always happy to hear from you! Get in touch with us anytime to work with us. Simply use the form or connect with us on social media, email or by phone.</p>
+                <p class="text-[14px] mb-6"><span class="font-bold">Email</span> <br> <span class="opacity-50">inquiries@Cracklabs.io</span></p>
+            </div>
+
+            <form class="text-[11px] flex flex-col gap-4 pb-[18px] lg:w-[50%] shadow-[black]/[0.3] shadow-[0px_2px_5px] lg:px-[30px] lg:py-[24px]" action="/" method="post">
+                <p class="text-[12px] md:text-[24px] leading-4 text-center font-bold mb-5">Contact form</p>
+                <input class="bg-transparent outline-none pb-2 border-b-[1px] border-b-secondary-color border-opacity-50 focus:border-opacity-100" name="Name" type="text" placeholder="Name">
+                <input class="bg-transparent outline-none pb-2 border-b-[1px] border-b-secondary-color border-opacity-50 focus:border-opacity-100" name="Name" type="email" placeholder="Email">
+                <label class="opacity-50" for="message">Message</label>
+                <textarea 
+                    id="message" 
+                    name="Message" 
+                    class="outline-none text-primary-color h-[109px]"
+                ></textarea>
+                <div class="self-center">
+                    <Button>SEND MESSAGE</Button>
+                </div>
+            </form>
+            <div class="hidden lg:flex lg:absolute left-0 top-0 items-center h-full">
+                <IconDeck
+                    width="15px"
+                    contStyle="lg:flex-col  bg-transparent"
+                    urls={[
+                        '/Images/icons/icon-twitter.png',
+                        '/Images/icons/icon-insta.png',
+                        '/Images/icons/icon-email.png',
+                        '/Images/icons/icon-door.png'
+                    ]} 
+                />
+            </div>
+            <div class="absolute top-0 left-0 hidden lg:flex justify-center text-center w-full">
+                <!-- <IconBox text='CRACKLABS' url="/images/icons/icon-logo.png" contStyle="bg-transparent"/> -->
+            </div>
+        </div>
+        <IconDeck
+            width="20px"
+            contStyle="flex flex-row justify-center border-[2px] border-grade lg:hidden"
+            urls={[
+                '/Images/icons/icon-twitter.png',
+                '/Images/icons/icon-insta.png',
+                '/Images/icons/icon-email.png',
+                '/Images/icons/icon-door.png'
+            ]} 
+        />
+       
+    </div>
+    
+</section>

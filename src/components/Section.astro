@@ -1,0 +1,8 @@
+---
+import {twMerge} from 'tailwind-merge'
+
+const {style} = Astro.props
+---
+<section class={twMerge('px-4 py-8', style)}>
+    <slot />
+</section>

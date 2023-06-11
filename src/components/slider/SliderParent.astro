@@ -1,0 +1,132 @@
+---
+import Heading from "@compo/typography/Heading.astro";
+import Button from "@compo/Button.astro";
+import data from '../../data/slides';
+---
+<astro-slider class="slider">
+    <!-- heading -->
+    <div class="flex flex-col">
+        <!-- haeding text -->
+        <slot name="heading" />
+        <!-- heading drop-down -->
+        <button class="open-btn self-end bg-[url('/Images/icons/icon-angle.svg')] w-[24px] aspect-square bg-center bg-contain bg-no-repeat"></button>
+        <!-- buttons -->
+        <slot name="action"/>
+    </div>
+
+    <!-- expandable -->
+    <div class="grid grid-flow-col gap-4 p-4 snap-mandatory snap-x overflow-auto auto-cols-[83%] content">
+       <slot />
+    </div>
+
+    <!-- base -->
+    <div class="flex flex-col">
+        <div class="flex gap-4">
+            <p class="text-[14px] font-thin italic">UI/UX Design <br> Interaction Design</p>
+            <p class="text-[14px] font-thin italic">Concept, Basketball <br> March, 2023</p>
+        </div>
+    </div>
+    
+</astro-slider>
+
+<style>
+    .content::-webkit-scrollbar{
+         display: none;
+    }
+
+    .content{
+        scrollbar-width: none;
+    }
+</style>
+
+<script>
+    import { animate } from "framer-motion/dom"
+import { boolean } from "zod"
+
+    class Slider extends HTMLElement{
+        content : HTMLElement
+        btn : HTMLElement
+        canMove : boolean
+        startX : number | undefined
+        targetX : number | undefined
+        runningAnimation : boolean | undefined
+        animation : any
+
+       constructor(){
+            super();
+            this.canMove = false;
+            this.content = this.querySelector('.content') as HTMLElement
+            this.btn = this.querySelector('.open-btn') as HTMLElement
+
+            this.startX = undefined
+            this.content.addEventListener('mousedown', (e)=> this.move(e, true))
+            this.content.addEventListener('mouseup', (e)=> this.move(e, false))
+            this.content.addEventListener('mousemove', (e)=> this.move(e, undefined))
+
+            this.targetX = undefined
+            this.runningAnimation = false
+            this.animation = undefined
+       }
+
+        move(e : MouseEvent, newCanMoveValue : boolean | undefined){
+            // console.log(e)
+            if(newCanMoveValue != undefined) this.canMove = newCanMoveValue
+
+            if(this.canMove){
+                
+                if(this.startX == undefined){
+                    this.startX = e.clientX
+                    return
+                }
+
+                // stop whatever animation is running and let all others know no animation is running]
+                this.animation.stop()
+                this.runningAnimation = false
+
+                this.content.classList.remove('snap-x','snap-mandatory')
+
+                let offset = e.clientX - this.startX
+                // console.log(offset)
+                this.content.scrollLeft -= offset
+
+                this.startX = e.clientX
+
+                this.targetX = this.content.scrollLeft
+
+                
+            }
+            else{
+                this.startX = undefined 
+
+                if(this.runningAnimation == false){
+                    this.content.classList.add('snap-x','snap-mandatory')
+                    const currentX = this.content.scrollLeft
+                    this.content.classList.remove('snap-x','snap-mandatory')
+
+                    this.runningAnimation = true
+                    this.animation = animate(this.targetX, currentX, {
+                        duration : 0.3,
+                        onUpdate: latest => {
+                            if(latest)
+                            this.content.scrollLeft = latest
+                        }
+                    })
+                    
+                    this.animation.then(()=>{
+                        this.runningAnimation = undefined
+                        this.content.classList.add('snap-x','snap-mandatory')
+                    })
+
+
+                }
+                
+            }
+
+
+            // console.log(e.clientX)
+        }
+
+    }
+
+    customElements.define('astro-slider', Slider)
+</script>

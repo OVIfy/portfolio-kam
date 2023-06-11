@@ -1,0 +1,16 @@
+---
+import {twMerge} from 'tailwind-merge'
+
+const {selected} = Astro.props
+---
+<li class={twMerge(selected && 'text-my-red' ,'group flex justify-center flex-col items-center nav-item text-[14px] lg:text-[16px] transition-colors hover:text-my-red hover:cursor-pointer')}>
+    <slot/>
+    <hr class={twMerge(selected ? "h-[1px] w-[100%] bg-red-600 border-0"  :"transition-all w-[0%] duration-300 group-hover:w-full h-[1px] bg-red-600 border-0")}>
+</li>
+<style>
+    .nav-item::after{
+
+    }
+
+    /* selected && 'underline text-my-red underline-offset-4' */
+</style>

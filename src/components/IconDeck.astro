@@ -1,0 +1,26 @@
+q---
+interface Props{
+    urls : Array<string>,
+    width?
+    children?
+    contStyle?
+    iconStyle?
+}
+
+import { twMerge } from 'tailwind-merge';
+const {urls, width, contStyle, iconStyle} = Astro.props
+---
+
+<div class={twMerge("bg-primary-color inline-flex flex-col gap-12 p-6", contStyle)}>
+    {urls && urls.map((url) => 
+        <img tabindex="0" width={width? width : "24px"} class={twMerge("mouse-change icon-to-red", iconStyle)} src={url}/>
+    )}
+    <slot/>
+</div>
+<style>
+  .icon-to-red{
+  }
+.icon-to-red:hover{
+  filter: brightness(0) invert(34%) sepia(60%) saturate(3762%) hue-rotate(343deg) brightness(91%) contrast(97%);
+}
+</style>

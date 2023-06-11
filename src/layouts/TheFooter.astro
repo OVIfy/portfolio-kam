@@ -1,0 +1,88 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+import FooterLine from "../components/Footer/FooterLine.astro";
+// import Crack from "./Crack.astro";
+---
+<Footer
+slot="footer"
+footerStyle="mt-[64px] lg:mt-[104px] bg-grade md:bg-transparent relative"
+>
+<FooterLine 
+    headerText="Home"
+    mobContents={[
+        'Pencil Hoops with ESPN and NBA',
+        'Horror Vault with Spotify',
+        'Crack Headphones',
+        'Crack VR with Chelsea FC'
+    ]}
+/>
+<FooterLine 
+    headerText="Works"
+    mobContents={[
+        'Web Design & Development',
+        'App Design & Development',
+        'Product Design',
+        'Animation',
+        'Illustration'
+    ]}
+/>
+<FooterLine 
+    headerText="About"
+    mobContents={[
+        'Handoff Documents',
+        'About Horror Vault'
+    ]}
+    deskContents={[
+        'Handoff Documents',
+        '<span class="hidden md:inline border-b-[1px] border-neutral-color text-neutral-color font-bold click-me">Click Me! ;)</span>',
+        'About Horror Vault'
+    ]}
+/>
+
+<!-- <div class="absolute top-0 left-[40%]">
+    <Crack />
+</div>
+
+<div class="absolute top-0 left-[60%]">
+    <Crack />
+</div>
+
+<div class="absolute top-0 left-[10%]">
+    <Crack />
+</div>
+
+<div class="absolute top-[100px] right-[25%]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-0 left-[60%] z-[20]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-0 left-[10%] z-[20]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-[200px] right-[50px] z-[20]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-[200px] left-[200px] z-[20]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-[180px] right-[18%] z-[20]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-[150px] left-[55%] z-[20]">
+    <Crack />
+</div>
+
+<div class="absolute bottom-[200px] left-[40%] z-[20]">
+    <Crack />
+</div> -->
+</Footer>
+<style>
+
+</style>

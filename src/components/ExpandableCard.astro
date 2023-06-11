@@ -1,0 +1,120 @@
+---
+
+const {title, content, role, open} = Astro.props
+---
+<expandable-card open={open}>
+<section data-open={open} class="overflow-hidden expandable-card">
+    <div class="header pt-4">
+        <div class=" text-secondary-color text-[16px] md:text-[24px] flex justify-between items-center">
+            <p class="font-semibold">{title}</p>
+            <div class="w-[20px] aspect-square flex items-center justify-center relative">
+                <div class="w-full h-[1px] bg-my-red absolute"></div>
+                <div class="cross-line w-full h-[1px] transform rotate-90 bg-my-red absolute"></div>
+                <!-- <div class="w-[2px] h-full bg-neutral-color absolute"></div> -->
+            </div>
+        </div>
+        {role && <p class="text-neutral-color mt-2 text-[12px] md:text-[16px]">{role}</p>}
+        <hr class="opacity-25 mt-4">
+    </div>
+    <div class="content text-[14px] text-secondary-color text-my-gray-dark leading-[20px] py-4 pb-2 border-b-[1px] border-secondary-color border-opacity-25">
+        {content && <p set:html={content}></p>}
+        <slot />
+    </div>
+</section>
+</expandable-card>
+
+<script>
+    // const allExpandableCards = document.querySelectorAll('.expandable-card') as NodeListOf<HTMLElement>
+    // let lastExpandableCard : HTMLElement
+
+    // allExpandableCards.forEach((expandableCard, i) => {
+    //     let header = expandableCard.querySelector('.header') as HTMLElement
+    //     let content = expandableCard.querySelector('.content') as HTMLElement
+    //     let crossLine = expandableCard.querySelector('.cross-line') as HTMLElement
+    //     let originalHeight = content.getBoundingClientRect().height //we store the original height of each expandable card
+    //     lastExpandableCard = allExpandableCards[0]
+        
+    //     if( allExpandableCards[0] == expandableCard){
+    //         crossLine.animate([{width : '0px'}], {duration : 300, fill : 'forwards'})
+    //     }else{
+    //         content.style.maxHeight = '0px'
+    //         content.style.padding = '0px' //this line and the one above closses all the expandable cards
+    //     }
+
+        
+    //     header.onclick = () => {
+            
+            
+    //         let open = header.parentElement.getAttribute("data-open") as any
+    //         open = Number(open) 
+    //         open = Boolean(open) 
+
+    //         if(open){
+    //             content.animate([{maxHeight : '0px', padding:'0px 0px'}], {duration : 600, fill : 'forwards'})
+    //             crossLine.animate([{width : '20px'}], {duration : 300, fill : 'forwards'})
+    //             header.parentElement.setAttribute("data-open", "0")
+    //         }
+    //         else{
+    //             if(lastExpandableCard && lastExpandableCard != allExpandableCards[i]){
+    //                 let lastExpandableCardContent = lastExpandableCard.querySelector('.content')
+    //                 let lastExpandableCardLine = lastExpandableCard.querySelector('.cross-line')
+    //                 lastExpandableCard.setAttribute("data-open","0")
+    //                 lastExpandableCardContent.animate([{maxHeight : '0px', padding:'0px 0px'}], {duration : 600, fill : 'forwards'})
+    //                 lastExpandableCardLine.animate([{width : '20px'}], {duration : 300, fill : 'forwards'})
+    //             }
+    //             header.parentElement.setAttribute("data-open", "1")
+    //             content.animate([{maxHeight : '1000px', padding:'14px 0px'}], {duration : 600, fill : 'forwards'})
+    //             crossLine.animate([{width : '0px'}], {duration : 300, fill : 'forwards'})
+
+    //             lastExpandableCard = allExpandableCards[i]
+    //         }
+        
+            
+    //     }
+    // })
+
+    class ExpandableCard extends HTMLElement{
+        header : HTMLElement
+        content : HTMLElement
+        cross : HTMLElement
+        originalHeight : number
+
+        constructor(){
+            super();
+            //the header part of the accordion
+            this.header = this.querySelector('.header') as HTMLElement 
+            //the content section of the accordion
+            this.content = this.querySelector('.content') as HTMLElement
+            //the cross on the accordion
+            this.cross = this.querySelector('.cross-line') as HTMLElement
+            //saving the open height of the accordion
+            this.originalHeight = this.content.getBoundingClientRect().height
+            //getting the current state of the accordion by checking if it has an open attribute
+            this.open = this.hasAttribute('open')
+            //setting an event listener on the header
+            this.header.addEventListener('click', e =>{
+                this.open = !this.hasAttribute('open')
+            })
+        }
+
+        set open(val : boolean){
+            if(val){
+                this.content.animate([{maxHeight : `${this.originalHeight}px`, padding : '16px 0px'}], {duration : 300, fill : 'forwards'})
+                this.cross.animate([{width : '0px'}], {duration : 200, fill : 'forwards'})
+                this.setAttribute('open', "")
+                this.dispatchEvent(new CustomEvent("accordion-open", {bubbles : true, detail : this}))
+            }else{
+                this.content.animate([{maxHeight : '0px', padding : '0px'}], {duration : 300, fill : 'forwards'})
+                this.cross.animate([{width : '100%'}], {duration : 200, fill : 'forwards'})
+                this.removeAttribute('open')
+            }
+        }
+
+        get open(){
+            return this.open
+        }
+
+    }
+
+    customElements.define("expandable-card", ExpandableCard)
+</script>

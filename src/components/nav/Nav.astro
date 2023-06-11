@@ -1,0 +1,30 @@
+---
+import NavItem from '@compo/nav/NavItem.astro'
+import NavItems from '@compo/nav/NavItems.astro'
+import Button from '@compo/Button.astro'
+import LightBtn from '@compo/LightBtn.svelte'
+---
+<nav class="px-4 lg:px-6 xl:px-8 flex justify-between pt-12 items-center">
+   <div class="w-8 h-4 flex flex-col justify-between relative group md:hidden">
+        <div class="bg-my-red h-[1px] w-full transition-transform duration-300 transform group-hover:translate-x-[5px]"></div>
+        <div class="bg-my-red h-[2px] w-full transition-transform duration-300 transform group-hover:translate-x-[10px]"></div>
+        <div class="bg-my-red h-[2px] w-full transition-transform duration-300 transform group-hover:translate-x-[15px]"></div>
+        <button class="absolute z-[2] w-full h-full"></button>
+   </div>
+
+   <h1 class="font-bilal text-[24px] sm:text-[40px] md:text-[32px] lg:text-[64px]">Kamil Oseni</h1>
+
+   <img src="Images/icons/icon-profile.svg" alt="kamils picture" class="sm:w-[90px] md:hidden">
+
+   <NavItems style="hidden md:flex  justify-center items-center gap-4 xl:gap-16">
+        <ul class="hidden md:flex gap-4 lg:gap-10 xl:gap-16">
+            <NavItem selected>Home</NavItem>
+            <NavItem>Featured Works</NavItem>
+            <NavItem>About</NavItem>
+            <NavItem>Resume</NavItem>
+        </ul>
+        <Button style="bg-my-red border-my-red hover:bg-my-red hover:text-white">Get in touch</Button>
+        <LightBtn client:load/>
+        
+   </NavItems>
+</nav>

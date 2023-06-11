@@ -1,0 +1,49 @@
+---
+---
+<expandable-list>
+    <slot />
+</expandable-list>
+
+<script>
+    class ExpandableCardList extends HTMLElement{
+        expandableCards : NodeListOf<HTMLElement>
+        openExpandableCard : null | HTMLElement
+
+        constructor(){
+            super();
+
+            this.expandableCards = this.getElementsByTagName("expandable-card")
+            this.openExpandableCard = null
+            this.addEventListener("accordion-open",(e)=>{
+                this.closeOpenExpandableCard(e.detail)
+           })
+           this.selectOpen()
+        }
+
+        //this function ensures that only one of the expandable cards is open
+        selectOpen(){
+            for(const expandableCard of this.expandableCards){
+                if(expandableCard.hasAttribute("open")){
+                    if(this.openExpandableCard) this.openExpandableCard.open = false;
+                    this.openExpandableCard = expandableCard
+                }
+            }
+        }
+
+        //closes whatever accordion is open when a new one is clicked 
+        closeOpenExpandableCard(newlyOpenedElement : HTMLElement){
+            //this function close the card that was open stored in this.openExpandableCard
+            //and stores the one that was newly opened in this.openExpandableCard 
+            //it rus each time a new accordion is opened because the accordion-open custom event is dispatched
+            if(this.openExpandableCard == newlyOpenedElement){
+                return
+            }
+            this.openExpandableCard.open = false;
+            this.openExpandableCard = newlyOpenedElement;
+            
+        }
+
+    }
+
+    customElements.define("expandable-list", ExpandableCardList)
+</script>
