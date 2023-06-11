@@ -4,8 +4,7 @@ export interface Prop{
     style? : string
     fill: boolean
 }
-
-import {twMerge} from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 const {text, fill, style} = Astro.props
 ---
 <button class={twMerge('p-4 text-[14px] font-semibold border-[1px] rounded border-white hover:bg-white hover:text-black duration-300 transition-all', fill && 'bg-white text-black hover:bg-transparent hover:text-white', style)}><slot/></button>
