@@ -1,5 +1,4 @@
 ---
-import { twMerge } from "tailwind-merge";
 
 interface Prop{
     text : string
@@ -9,4 +8,6 @@ interface Prop{
 
 const {text, fill, style} = Astro.props
 ---
-<button class={twMerge('p-4 text-[14px] font-semibold border-[1px] rounded border-white hover:bg-white hover:text-black duration-300 transition-all', fill && 'bg-white text-black hover:bg-transparent hover:text-white', style)}><slot/></button>
+<!-- <button class={twMerge('p-4 text-[14px] font-semibold border-[1px] rounded border-white hover:bg-white hover:text-black duration-300 transition-all', fill && 'bg-white text-black hover:bg-transparent hover:text-white', style)}><slot/></button> -->
+
+<button class:list={['p-4 text-[14px] font-semibold border-[1px] rounded border-white hover:bg-white hover:text-black duration-300 transition-all', fill && 'bg-white text-black hover:bg-transparent hover:text-white', style]}><slot/></button>
