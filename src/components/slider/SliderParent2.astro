@@ -51,37 +51,32 @@ import { boolean } from "zod"
         targetX : number | undefined
         animation : any
         allChildrenElements : any
-
         colors : any
         hist : any
+        dir : 'L' | 'R'
 
        constructor(){
             super();
             this.canMove = false;
-            this.content = this.querySelector('.content') as HTMLElement
+            this.startX = undefined
+            this.targetX = undefined
+            this.animation = undefined
+            this.dir = 'R'
 
             this.btn = this.querySelector('.open-btn') as HTMLElement
+            this.content = this.querySelector('.content') as HTMLElement
+            this.allChildrenElements = this.content.children as HTMLCollection
+            this.hist = [this.allChildrenElements.length - 1, 0]
+
             // this.btn.addEventListener('click', (e)=> console.log('horray'))
 
-            this.startX = undefined
             this.content.addEventListener('mousedown', (e)=> this.move(e, true))
             this.content.addEventListener('mouseup', (e)=> this.move(e, false))
             this.content.addEventListener('pointermove', (e)=> {this.move(e, undefined); this.loopSlider(); this.playSlide(true)})
             this.content.addEventListener('mouseleave', (e)=> this.playSlide())
             // this.content.addEventListener('pointerout', (e)=> this.playSlide())
             this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
-            // this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
-
-
-
-            // this.content.addEventListener('scroll', (e)=> this.loopSlider())
-
-            this.targetX = undefined
-            this.animation = undefined
-
-            this.allChildrenElements = this.content.children as HTMLCollection
-        
-            this.hist = [this.allChildrenElements.length - 1, 0]
+   
             this.playSlide()
        }
 
@@ -113,22 +108,26 @@ import { boolean } from "zod"
 
         if(pause){
             this.animation.cancel()
-            console.log('horrah')
             return
         }
 
-        console.log('bulla')
         this.animation = animate(0, 1000, {
             duration: 10000,
             repeat: Infinity,
             ease: 'linear',
             onUpdate : (i) => {
                 // console.log(i)
+                if(this.dir == 'R')
                 this.content.scrollLeft += 1
+                else
+                this.content.scrollLeft -= 1
+
                 // console.log(this.content.scrollLeft)
                 this.loopSlider()
             }
          })
+
+        console.log(this.dir)
        }
 
         move(e : MouseEvent, newCanMoveValue : boolean | undefined){
@@ -138,17 +137,18 @@ import { boolean } from "zod"
 
             if(this.canMove){
                 if(this.startX == undefined) this.startX = e.clientX
-
                 let offset = this.startX - e.clientX
-       
-                this.content.scrollLeft += offset * 2
+                //setting direction
+                this.dir = offset >= 0 ? 'R' : 'L'
 
+                this.content.scrollLeft += offset * 2
                 this.startX = e.clientX
             }
             else{
 
                 this.startX = undefined
             } 
+
         }
 
     }
