@@ -59,7 +59,9 @@ import { boolean } from "zod"
             super();
             this.canMove = false;
             this.content = this.querySelector('.content') as HTMLElement
+
             this.btn = this.querySelector('.open-btn') as HTMLElement
+            // this.btn.addEventListener('click', (e)=> console.log('horray'))
 
             this.startX = undefined
             this.content.addEventListener('mousedown', (e)=> this.move(e, true))
@@ -112,18 +114,20 @@ import { boolean } from "zod"
        }
 
        playSlide(pause? : boolean){
+        
         if(pause){
             this.animation.cancel()
             return
         }
 
-        this.animation = animate(0, 10, {
-            duration: 200,
+        this.animation = animate(0, 1000, {
+            duration: 10000,
             repeat: Infinity,
             ease: 'linear',
             onUpdate : (i) => {
                 // console.log(i)
-                this.content.scrollLeft += 0.5
+                this.content.scrollLeft += 1
+                // console.log(this.content.scrollLeft)
                 this.loopSlider()
             }
          })
