@@ -11,7 +11,7 @@ import ExpandableCard from '@compo/ExpandableCard.astro';
 import ExpandableCardList from '@compo/ExpandableCardList.astro'
 import ContactUs from '@compo/ContactUs.astro'
 
-import SliderParent from '@compo/slider/SliderParent.astro';
+import SliderParent2 from '@compo/slider/SliderParent2.astro';
 
 import data from '../data/slides'
 ---
@@ -34,7 +34,7 @@ import data from '../data/slides'
 		<Section>
 			<Heading line>Featured Works</Heading>
 
-			<SliderParent>
+			<SliderParent2>
 				<Heading slot='heading' Level="h2">Pencil Hoops <br> with <span class="text-my-red">NBA</span> & <span class="text-my-red">ESPN</span></Heading>
 
 				<div slot="action">
@@ -44,10 +44,10 @@ import data from '../data/slides'
 				
 
 				{data.map((data)=>{
-					return <div tabindex="0" class={"aspect-video snap-center " + data.fill}>
-					</div>
+					return <img src={data.src} class={"aspect-video ite " + data.fill}>
+					</img>
 				})}
-			</SliderParent>
+			</SliderParent2>
 
 		</Section>
 

@@ -1,0 +1,155 @@
+---
+import Heading from "@compo/typography/Heading.astro";
+import Button from "@compo/Button.astro";
+import data from '../../data/slides';
+---
+<astro-slider class="slider">
+    <!-- heading -->
+    <div class="flex flex-col">
+        <!-- haeding text -->
+        <slot name="heading" />
+        <!-- heading drop-down -->
+        <button class="open-btn self-end bg-[url('/Images/icons/icon-angle.svg')] w-[24px] aspect-square bg-center bg-contain bg-no-repeat"></button>
+        <!-- buttons -->
+        <slot name="action"/>
+    </div>
+
+    <!-- expandable -->
+    <div class="grid grid-flow-col gap-4 p-4 overflow-auto auto-cols-[42%] content">
+       <slot />
+    </div>
+
+    <!-- base -->
+    <div class="flex flex-col">
+        <div class="flex gap-4">
+            <p class="text-[14px] font-thin italic">UI/UX Design <br> Interaction Design</p>
+            <p class="text-[14px] font-thin italic">Concept, Basketball <br> March, 2023</p>
+        </div>
+    </div>
+    
+</astro-slider>
+
+<style>
+    .content::-webkit-scrollbar{
+         display: none;
+    }
+
+    .content{
+        scrollbar-width: none;
+    }
+</style>
+
+<script>
+    import { animate } from "framer-motion/dom"
+import { boolean } from "zod"
+
+    class Slider extends HTMLElement{
+        content : HTMLElement
+        btn : HTMLElement
+        canMove : boolean
+        startX : number | undefined
+        targetX : number | undefined
+        animation : any
+        allChildrenElements : any
+
+        colors : any
+        hist : any
+
+       constructor(){
+            super();
+            this.canMove = false;
+            this.content = this.querySelector('.content') as HTMLElement
+            this.btn = this.querySelector('.open-btn') as HTMLElement
+
+            this.startX = undefined
+            this.content.addEventListener('mousedown', (e)=> this.move(e, true))
+            this.content.addEventListener('mouseup', (e)=> this.move(e, false))
+            this.content.addEventListener('pointermove', (e)=> {this.move(e, undefined); this.loopSlider(); this.playSlide(true)})
+            this.content.addEventListener('mouseleave', (e)=> this.playSlide())
+            // this.content.addEventListener('pointermove', (e)=> this.playSlide(true))
+            this.content.addEventListener('pointerup', (e)=> this.playSlide(true))
+            this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
+
+
+
+            // this.content.addEventListener('scroll', (e)=> this.loopSlider())
+
+            this.targetX = undefined
+            this.animation = undefined
+
+            this.allChildrenElements = this.content.children as HTMLCollection
+        
+            this.hist = [this.allChildrenElements.length - 1, 0]
+            this.playSlide()
+       }
+
+       //this function takes the last element to the begining if we are at the end of the slide 
+       //and repeats the first element if we hit the end of the slider
+       loopSlider(){
+            if(true){
+                //if we are at the start of the slide
+                if(this.content.scrollLeft == 0){
+                    // console.log('here')
+                    // let oldScroll = this.content.scr
+                    this.content.prepend(this.allChildrenElements[this.hist[0]])
+                    // console.log(oldScroll)
+                    this.content.scrollLeft = this.allChildrenElements[this.hist[0]].offsetWidth + 16
+                    // console.log(this.allChildrenElements[this.hist[0]].offsetWidth, this.content.style.rowGap)
+                }
+
+                // console.log(this.content.scrollLeft, this.content.scrollWidth - this.content.clientWidth - 16)
+                if(this.content.scrollLeft >= this.content.scrollWidth - this.content.clientWidth - 16){
+                    this.content.append(this.allChildrenElements[0])
+                    this.content.scrollLeft = this.content.scrollLeft - this.allChildrenElements[this.hist[0]].offsetWidth - 16
+
+                    console.log('here')
+                }
+
+            }
+
+            // console.log('here')
+
+       }
+
+       playSlide(pause? : boolean){
+        if(pause){
+            this.animation.cancel()
+            return
+        }
+
+        this.animation = animate(0, 10, {
+            duration: 200,
+            repeat: Infinity,
+            ease: 'linear',
+            onUpdate : (i) => {
+                // console.log(i)
+                this.content.scrollLeft += 0.5
+                this.loopSlider()
+            }
+         })
+       }
+
+        move(e : MouseEvent, newCanMoveValue : boolean | undefined){
+            // console.log(e)
+            if(newCanMoveValue != undefined) this.canMove = newCanMoveValue
+            
+
+            if(this.canMove){
+                if(this.startX == undefined) this.startX = e.clientX
+
+                let offset = this.startX - e.clientX
+       
+                this.content.scrollLeft += offset * 2
+
+                this.startX = e.clientX
+            }
+            else{
+
+                this.startX = undefined
+            } 
+        }
+
+    }
+
+    customElements.define('astro-slider', Slider)
+</script>
