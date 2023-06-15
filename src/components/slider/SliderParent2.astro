@@ -68,9 +68,9 @@ import { boolean } from "zod"
             this.content.addEventListener('mouseup', (e)=> this.move(e, false))
             this.content.addEventListener('pointermove', (e)=> {this.move(e, undefined); this.loopSlider(); this.playSlide(true)})
             this.content.addEventListener('mouseleave', (e)=> this.playSlide())
-            // this.content.addEventListener('pointermove', (e)=> this.playSlide(true))
-            this.content.addEventListener('pointerup', (e)=> this.playSlide(true))
+            // this.content.addEventListener('pointerout', (e)=> this.playSlide())
             this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
+            // this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
 
 
 
@@ -103,23 +103,21 @@ import { boolean } from "zod"
                 if(this.content.scrollLeft >= this.content.scrollWidth - this.content.clientWidth - 16){
                     this.content.append(this.allChildrenElements[0])
                     this.content.scrollLeft = this.content.scrollLeft - this.allChildrenElements[this.hist[0]].offsetWidth - 16
-
-                    console.log('here')
                 }
 
             }
 
-            // console.log('here')
-
        }
 
        playSlide(pause? : boolean){
-        
+
         if(pause){
             this.animation.cancel()
+            console.log('horrah')
             return
         }
 
+        console.log('bulla')
         this.animation = animate(0, 1000, {
             duration: 10000,
             repeat: Infinity,
