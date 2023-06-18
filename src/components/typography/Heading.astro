@@ -8,7 +8,7 @@ interface Prop{
 }
 
 const headingStyle = {
-    "h1" : "text-[48px] md:text-[56px] font-bold leading-[48px] md:leading-[64px]",
+    "h1" : "text-[48px] md:text-[56px] font-bold leading-[48px] md:leading-[64px] mb-[40px]",
     "h2" : "md:text-[32px] font-bold leading-[32px] text-[14px]",
     "h3" : "text-[24px] md:text-[32px] text-[16px] font-bold leading-[32px]",
 }
@@ -30,7 +30,7 @@ const {Level = 'h1', style, line} = Astro.props
         height: 3px;
         background-color: red;
         position: absolute;
-        bottom: 0px;
+        bottom: -10px;
         left: 0;
         border-radius: 100px;
     }

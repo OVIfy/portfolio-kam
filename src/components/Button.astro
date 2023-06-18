@@ -9,4 +9,4 @@ export interface Prop{
 
 const {text, fill, style} = Astro.props
 ---
-<button class={twMerge('p-4 text-[14px] font-semibold border-[1px] rounded border-white hover:bg-white hover:text-black duration-300 transition-all', fill && 'bg-white text-black hover:bg-transparent hover:text-white', style)}><slot/></button>
+<button class={twMerge('p-4 text-[14px] font-semibold border-[0.1px] border-opacity-30 rounded border-white hover:bg-white hover:text-black duration-300 transition-all', fill && 'bg-white text-black hover:bg-transparent hover:text-white', style)}><slot/></button>

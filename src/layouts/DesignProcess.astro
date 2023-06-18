@@ -1,0 +1,42 @@
+---
+import Section from "@compo/Section.astro";
+import Heading from '@compo/typography/Heading.astro';
+import ExpandableCardList from "@compo/ExpandableCardList.astro";
+import ExpandableCard from "@compo/ExpandableCard.astro";
+---
+<Section>
+    <Heading line>My Design <br> Process</Heading>
+
+    <ExpandableCardList>
+        <ExpandableCard 
+            open
+            title="Research"
+            content="Understanding people’s needs and preferences is key to creating successful designs. I conduct user research to gain insights and identify pain points."
+        />
+
+        <ExpandableCard 
+            title="Ideate"
+            content="In the brainstorming and ideation phase, I generate and refine ideas, encourage creativity and collaboration to come up with the best possible solutions."
+        />
+
+        <ExpandableCard 
+            title="Sketches & Design"
+            content="This is where the visual aspect of my design comes into play. I sketch ideas and create detailed designs that are both visually appealing and functional."
+        />
+
+        <ExpandableCard 
+            title="Prototype"
+            content="Prototyping is a crucial step in my design process. I build and test multiple iterations of my design to ensure that it meets people's needs and works effectively."
+        />
+
+        <ExpandableCard 
+            title="Launch"
+            content="Launching a product can be exciting and nerve-wracking. I ensure that my design is polished, the user experience is flawless, and marketing strategy is in place"
+        />
+
+        <ExpandableCard 
+            title="Post-Launch Testing"
+            content="My job doesn't end once I launch your product. I keep testing and iterating based on user feedback to ensure that my design continues to meet their needs and remain relevant."
+        />
+    </ExpandableCardList>
+</Section>

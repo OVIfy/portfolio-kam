@@ -2,31 +2,31 @@
 import Heading from "@compo/typography/Heading.astro";
 import Button from "@compo/Button.astro";
 import data from '../../data/slides';
+
+const {open} = Astro.props
 ---
-<astro-slider class="slider">
-    <!-- heading -->
-    <div class="flex flex-col">
-        <!-- haeding text -->
-        <slot name="heading" />
-        <!-- heading drop-down -->
-        <button class="open-btn self-end bg-[url('/Images/icons/icon-angle.svg')] w-[24px] aspect-square bg-center bg-contain bg-no-repeat"></button>
-        <!-- buttons -->
-        <slot name="action"/>
-    </div>
+<astro-slider class="slider " open={open}>
+    <div class="border-my-gray-dark border-y-[1px] border-opacity-30 py-6 px-4">
+        <!-- heading -->
+        <div class="flex flex-col">
+            <!-- haeding text -->
+            <slot name="heading" />
+            <!-- heading drop-down -->
+            <button class="open-btn self-end bg-[url('/Images/icons/icon-angle.svg')] w-[24px] aspect-square bg-center bg-contain bg-no-repeat"></button>
+            <!-- buttons -->
+            <slot name="action"/>
+        </div>
+        <div class="p-content overflow-x-auto overflow-y-hidden">
+            <!-- expandable -->
+            <div class="grid grid-flow-col gap-4 p-4 overflow-auto auto-cols-[42%] content origin-top max-h-[1000px]">
+            <slot />
+            </div>
 
-    <!-- expandable -->
-    <div class="grid grid-flow-col gap-4 p-4 overflow-auto auto-cols-[42%] content">
-       <slot />
-    </div>
+            <!-- base -->
+            <slot name="base"/>
 
-    <!-- base -->
-    <div class="flex flex-col">
-        <div class="flex gap-4">
-            <p class="text-[14px] font-thin italic">UI/UX Design <br> Interaction Design</p>
-            <p class="text-[14px] font-thin italic">Concept, Basketball <br> March, 2023</p>
         </div>
     </div>
-    
 </astro-slider>
 
 <style>
@@ -40,11 +40,12 @@ import data from '../../data/slides';
 </style>
 
 <script>
-    import { animate } from "framer-motion/dom"
-import { boolean } from "zod"
+    import { animate } from "framer-motion/dom";
+    import { motion, useMotionValue } from "framer-motion"
 
     class Slider extends HTMLElement{
         content : HTMLElement
+        parentContent : HTMLElement
         btn : HTMLElement
         canMove : boolean
         startX : number | undefined
@@ -54,6 +55,7 @@ import { boolean } from "zod"
         colors : any
         hist : any
         dir : 'L' | 'R'
+        animationDone : boolean
 
        constructor(){
             super();
@@ -62,11 +64,17 @@ import { boolean } from "zod"
             this.targetX = undefined
             this.animation = undefined
             this.dir = 'R'
+            this.open = this.hasAttribute('open')
 
-            this.btn = this.querySelector('.open-btn') as HTMLElement
+            
             this.content = this.querySelector('.content') as HTMLElement
+            this.parentContent = this.querySelector('.p-content') as HTMLElement
             this.allChildrenElements = this.content.children as HTMLCollection
             this.hist = [this.allChildrenElements.length - 1, 0]
+            this.btn = this.querySelector('.open-btn') as HTMLElement
+            this.openSlide()
+            this.btn.addEventListener('click', ()=> this.openSlide())
+            this.animationDone = true
 
             // this.btn.addEventListener('click', (e)=> console.log('horray'))
 
@@ -78,6 +86,37 @@ import { boolean } from "zod"
             this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
    
             this.playSlide()
+       }
+
+       openSlide(){
+            let value = this.hasAttribute('open')
+            let children = this.querySelectorAll('.content img') as NodeListOf<HTMLElement>
+            
+            // if(this.animationDone)
+            if(value == true){
+                this.animationDone = false
+                let jsAnim = this.parentContent.animate([{maxHeight : '600px'}], {duration : 1000, fill:'forwards'})
+                
+                jsAnim.onfinish = () => animate(children, {scale : [0.9, 1]}, {duration : 1})
+                this.btn.animate([{transform : 'rotate(180deg)'}], {duration : 200, fill : 'forwards'})
+                this.removeAttribute("open")
+            }
+            else{
+                this.animationDone = false
+                animate(children, {scale : [1, 0.9]}, {duration : 1})
+                .then(()=>{
+                    this.parentContent.animate([{maxHeight : 0}], {duration : 1000, fill:'forwards'})
+                })
+                // console.log('here')
+                this.btn.animate([{transform : 'rotate(0deg)'}], {duration : 200, fill : 'forwards'})
+                this.setAttribute("open", "")
+            }
+       }
+
+       set open(value : boolean){
+            
+
+
        }
 
        //this function takes the last element to the begining if we are at the end of the slide 
@@ -127,7 +166,6 @@ import { boolean } from "zod"
             }
          })
 
-        console.log(this.dir)
        }
 
         move(e : MouseEvent, newCanMoveValue : boolean | undefined){

@@ -1,0 +1,90 @@
+---
+import Section from "@compo/Section.astro";
+import Heading from "@compo/typography/Heading.astro";
+import SliderParent2 from "@compo/slider/SliderParent2.astro";
+import Button from '@compo/Button.astro'
+
+import data from '../../src/data/slides.js'
+---
+<Section style="px-0">
+    <Heading line style="mx-4">Featured Works</Heading>
+
+    <SliderParent2 open>
+        <Heading slot='heading' Level="h2">Pencil Hoops <br> with <span class="text-my-red">NBA</span> & <span class="text-my-red">ESPN</span></Heading>
+
+        <div slot="action" class="flex gap-4">
+            <Button slot='action'>About</Button>
+            <Button fill>View Live Site</Button>
+        </div>
+        
+        {data.map((data)=>{
+            return <img src={data.src} class={"aspect-video ite " + data.fill}>
+            </img>
+        })}
+
+        <div class="flex flex-col" slot="base">
+            <div class="flex gap-4">
+                <p class="text-[14px] font-thin italic">UI/UX Design <br> Interaction Design</p>
+                <p class="text-[14px] font-thin italic">Concept, Basketball <br> March, 2023</p>
+            </div>
+        </div>
+    </SliderParent2>
+
+    <SliderParent2>
+        <Heading slot='heading' Level="h2">Horror Vault <br> with <span class="text-my-green">Spotify</span></Heading>
+
+        <div slot="action" class="flex gap-4">
+            <Button slot='action'>About</Button>
+            <Button fill>View Live Site</Button>
+        </div>
+        
+
+        {data.map((data)=>{
+            return <img src={data.src} class={"aspect-video ite " + data.fill}>
+            </img>
+        })}
+    </SliderParent2>
+
+    <SliderParent2>
+        <Heading slot='heading' Level="h2">Crack VR <br> with <span class="text-my-blue">Chelsea FC</span></Heading>
+
+        <div slot="action">
+            <Button slot='action'>About</Button>
+        </div>
+        
+
+        {data.map((data)=>{
+            return <img src={data.src} class={"aspect-video ite " + data.fill}>
+            </img>
+        })}
+    </SliderParent2>
+
+    <SliderParent2>
+        <Heading slot='heading' Level="h2">Crack Headphones</Heading>
+
+        <div slot="action">
+            <Button slot='action'>About</Button>
+        </div>
+        
+
+        {data.map((data)=>{
+            return <img src={data.src} class={"aspect-video ite " + data.fill}>
+            </img>
+        })}
+    </SliderParent2>
+
+    <SliderParent2>
+        <Heading slot='heading' Level="h2">Cracklabs.io</Heading>
+
+        <div slot="action">
+            <Button fill>View Live Site</Button>
+        </div>
+        
+
+        {data.map((data)=>{
+            return <img src={data.src} class={"aspect-video ite " + data.fill}>
+            </img>
+        })}
+    </SliderParent2>
+
+</Section>

@@ -99,7 +99,7 @@ const {title, content, role, open} = Astro.props
 
         set open(val : boolean){
             if(val){
-                this.content.animate([{maxHeight : `${this.originalHeight}px`, padding : '16px 0px'}], {duration : 300, fill : 'forwards'})
+                this.content.animate([{maxHeight : `${500}px`, padding : '16px 0px'}], {duration : 300, fill : 'forwards'})
                 this.cross.animate([{width : '0px'}], {duration : 200, fill : 'forwards'})
                 this.setAttribute('open', "")
                 this.dispatchEvent(new CustomEvent("accordion-open", {bubbles : true, detail : this}))

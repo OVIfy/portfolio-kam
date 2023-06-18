@@ -1,0 +1,30 @@
+---
+import Section from "@compo/Section.astro";
+import Heading from "@compo/typography/Heading.astro";
+---
+<Section>
+    <p class="italic ho text-[12px] text-my-gray-dark mb-6">Designing The Future, One Pixel At A Time</p>
+    <Heading Level="h2" style="text-[16px] mb-6">I design minimal, easy to navigate and <span class="text-my-red underline underline-offset-8">People-Friendly</span> interfaces.</Heading>
+
+    <p class="text-my-gray-dark">Hi!, My name is Kamil Oseni and I am a Human Interface Designer with a passion for <span class="text-white">interaction design</span>, and I absolutely adore art!.......... and Dogs!!<span class="inline-block w-[24px] aspect-square bg-[url('/Images/icons/icon-paws.svg')] bg-no-repeat bg-contain ml-1"></span></p>
+</Section>
+
+
+<style>
+    .ho::before{
+        content: '';
+        display: inline-block;
+        width: 24px;
+        aspect-ratio: 10/10;
+        background: no-repeat center right url('/Images/icons/icon-quote.svg');
+    }
+
+    .ho::after{
+        content: '';
+        display: inline-block;
+        width: 24px;
+        aspect-ratio: 10/10;
+        background: no-repeat center right url('/Images/icons/icon-quote.svg');
+        transform: scaleX(-1);
+    }
+</style>
