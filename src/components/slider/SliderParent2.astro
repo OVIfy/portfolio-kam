@@ -40,8 +40,7 @@ const {open} = Astro.props
 </style>
 
 <script>
-    import { animate } from "framer-motion/dom";
-    import { motion, useMotionValue } from "framer-motion"
+    import { animate, stagger } from "framer-motion/dom";
 
     class Slider extends HTMLElement{
         content : HTMLElement
@@ -64,8 +63,6 @@ const {open} = Astro.props
             this.targetX = undefined
             this.animation = undefined
             this.dir = 'R'
-            this.open = this.hasAttribute('open')
-
             
             this.content = this.querySelector('.content') as HTMLElement
             this.parentContent = this.querySelector('.p-content') as HTMLElement
@@ -97,7 +94,7 @@ const {open} = Astro.props
                 this.animationDone = false
                 let jsAnim = this.parentContent.animate([{maxHeight : '600px'}], {duration : 1000, fill:'forwards'})
                 
-                jsAnim.onfinish = () => animate(children, {scale : [0.9, 1]}, {duration : 1})
+                jsAnim.onfinish = () => animate(children, {scale : [0.9, 1]}, {duration : 1, delay : stagger(0.3)})
                 this.btn.animate([{transform : 'rotate(180deg)'}], {duration : 200, fill : 'forwards'})
                 this.removeAttribute("open")
             }
@@ -111,12 +108,6 @@ const {open} = Astro.props
                 this.btn.animate([{transform : 'rotate(0deg)'}], {duration : 200, fill : 'forwards'})
                 this.setAttribute("open", "")
             }
-       }
-
-       set open(value : boolean){
-            
-
-
        }
 
        //this function takes the last element to the begining if we are at the end of the slide 

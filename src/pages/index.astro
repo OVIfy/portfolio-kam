@@ -9,12 +9,15 @@ import Section from '@compo/Section.astro'
 import Footer from '../layouts/TheFooter.astro';
 import ExpandableCard from '@compo/ExpandableCard.astro';
 import ExpandableCardList from '@compo/ExpandableCardList.astro';
-import ContactUs from '@compo/ContactUs.astro';
 
+import Card2 from '@compo/Card2.astro';
+
+import ContactUs from '@compo/ContactUs.astro';
 import Works from '../layouts/Works.astro';
 import DesignProcess from 'src/layouts/DesignProcess.astro'; 
 import Hero from 'src/layouts/Hero.astro'; 
 import UI from 'src/layouts/UI.astro';
+import Resources from 'src/layouts/Resources.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -25,21 +28,19 @@ import UI from 'src/layouts/UI.astro';
 		<Heading Level="h2">Hello World</Heading>
 		<Button>About</Button> -->
 
-		<Hero />
+		<Hero/>
 
 		<Works />
 
-		<Section>
-			<Heading line>Resources</Heading>
-		</Section>
+		<Resources/>
 
-		<DesignProcess />
+		<DesignProcess/>
 
-		<UI />
+		<UI/>
 
 		<ContactUs/>
 
-		<Footer />
+		<Footer/>
 	</main>
 </Layout>
 

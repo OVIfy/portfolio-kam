@@ -1,0 +1,57 @@
+---
+import Section from "@compo/Section.astro";
+import Heading from "@compo/typography/Heading.astro";
+import Card2 from "@compo/Card2.astro";
+---
+
+<Section>
+    <Heading line>Resources</Heading>
+
+    <div class="md:flex md:mx-[10%]">
+      
+
+        <Card2 
+            titleText="CRAFTMANSHIP"
+            headingText="TOOLS"
+            cardStyle=""
+            noline
+        >
+            <ul class="text-left list-item list-disc leading-6 md:leading-8">
+                <li>Figma</li>
+                <li>Adobe Dreamweaver</li>
+                <li>Adobe Photoshop</li>
+                <li>Adobe Lightroom</li>
+                <li>Adobe XD</li>
+                <li>Canva</li>
+                <li>Sketch</li>
+                <li>Jira</li>
+                <li>Slack</li>
+                <li>TradingView</li>
+                <li>Webull</li>
+                <li>VS Code</li>
+            </ul>
+        </Card2>
+        <div class="w-full h-[24px] md:hidden"></div>
+        <Card2 
+            titleText="TALENT & COMPETENCE"
+            headingText="SKILLS"
+            cardStyle="md:mt-[62px] shadow-lg"
+            noline
+        >
+            <ul class="text-left list-item list-disc leading-6 md:leading-8">
+               <li>HTML, CSS, & JAVASCRIPT</li>
+               <li>Interaction Design</li>
+               <li>Prototyping</li>
+               <li>Visual Design</li>
+               <li>User Experience Design</li>
+               <li>Competitive Analysis</li>
+               <li>Problem-Solving</li>
+               <li>Cross-Functional Collaboration</li>
+               <li>Photography</li>
+               <li>Statistical Analysis</li>
+               <li>Idea Conceptualization</li>
+               <li>Business Intelligence</li>
+            </ul>
+        </Card2>
+    </div>
+</Section>
