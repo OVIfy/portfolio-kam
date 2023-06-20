@@ -1,0 +1,74 @@
+---
+
+---
+<slider-parent>
+    <div class="grid grid-flow-col gap-4 d:gap-8 p-4 overflow-auto auto-cols-[43%] lg:auto-cols-[33%] con">
+       <slot />
+    </div>
+</slider-parent>
+
+<style>
+    .con::-webkit-scrollbar{
+        display: none;
+    }
+</style>
+
+<script>
+
+    class Sliderr extends HTMLElement{
+        content : HTMLElement
+        canMove : boolean
+        startX : number | undefined
+        targetX : number | undefined
+        runningAnimation : boolean | undefined
+        animation : any
+
+       constructor(){
+            super();
+            this.canMove = false;
+            this.content = this.querySelector('.con') as HTMLElement
+
+            this.startX = undefined
+            this.content.addEventListener('mousedown', (e)=> this.move(e, true))
+            this.content.addEventListener('mouseup', (e)=> this.move(e, false))
+            this.content.addEventListener('mousemove', (e)=> this.move(e, undefined))
+
+            this.targetX = undefined
+            this.runningAnimation = false
+            this.animation = undefined
+       }
+
+        move(e : MouseEvent, newCanMoveValue : boolean | undefined){
+            // console.log(e)
+            if(newCanMoveValue != undefined) this.canMove = newCanMoveValue
+
+            if(this.canMove){
+                
+                if(this.startX == undefined){
+                    this.startX = e.clientX
+                    return
+                }
+
+                let offset = e.clientX - this.startX
+                // console.log(offset)
+                this.content.scrollLeft -= offset
+
+                this.startX = e.clientX
+
+                this.targetX = this.content.scrollLeft
+
+                
+            }
+            else{
+                this.startX = undefined 
+                
+            }
+
+
+            // console.log(e.clientX)
+        }
+
+    }
+
+    customElements.define('slider-parent', Sliderr)
+</script>

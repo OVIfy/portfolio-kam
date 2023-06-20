@@ -6,7 +6,7 @@ import data from '../../data/slides';
 const {open} = Astro.props
 ---
 <astro-slider class="slider " open={open}>
-    <div class="border-my-gray-dark border-y-[1px] border-opacity-30 py-6 px-4">
+    <div class="border-my-gray-dark border-y-[1px] border-opacity-30 py-6 px-4 md:px-[80px] md:py-[40px]">
         <!-- heading -->
         <div class="flex flex-col">
             <!-- haeding text -->
@@ -18,8 +18,8 @@ const {open} = Astro.props
         </div>
         <div class="p-content overflow-x-auto overflow-y-hidden">
             <!-- expandable -->
-            <div class="grid grid-flow-col gap-4 p-4 overflow-auto auto-cols-[42%] content origin-top max-h-[1000px]">
-            <slot />
+            <div class="grid grid-flow-col gap-4 p-4 overflow-auto auto-cols-[72%] md:auto-cols-[42%] content origin-top max-h-[1000px]">
+                <slot />
             </div>
 
             <!-- base -->

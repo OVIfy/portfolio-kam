@@ -17,7 +17,7 @@
     "@types/react-dom": "^18.2.4",
     "astro": "^2.5.5",
     "framer-motion": "^10.12.16",
-    "gsap": "^3.11.5",
+    "gsap": "npm:@gsap/member@^3.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "svelte": "^3.59.1",

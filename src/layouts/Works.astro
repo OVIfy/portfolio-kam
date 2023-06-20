@@ -6,8 +6,8 @@ import Button from '@compo/Button.astro'
 
 import data from '../../src/data/slides.js'
 ---
-<Section style="px-0">
-    <Heading line style="mx-4">Featured Works</Heading>
+
+    <Heading line style="mx-4 md:mx-[80px] md:mt-[160px]">Featured Works</Heading>
 
     <SliderParent2 open>
         <Heading slot='heading' Level="h2">Pencil Hoops <br> with <span class="text-my-red">NBA</span> & <span class="text-my-red">ESPN</span></Heading>
@@ -23,7 +23,7 @@ import data from '../../src/data/slides.js'
         })}
 
         <div class="flex flex-col" slot="base">
-            <div class="flex gap-4">
+            <div class="flex gap-4 md:flex-col md:gap-0">
                 <p class="text-[14px] font-thin italic">UI/UX Design <br> Interaction Design</p>
                 <p class="text-[14px] font-thin italic">Concept, Basketball <br> March, 2023</p>
             </div>
@@ -86,5 +86,3 @@ import data from '../../src/data/slides.js'
             </img>
         })}
     </SliderParent2>
-
-</Section>

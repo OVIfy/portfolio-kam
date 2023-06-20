@@ -1,0 +1,62 @@
+---
+import Slider from "./slider/Slider.astro";
+---
+
+<Slider>
+    <slider-item>
+        <figure>
+            <img class="rounded-[2.7px]" src="/Images/designs/1.jpg" alt="Trulli">
+            <figcaption class="text-[14px] font-bold text-center mt-[14px]">Crack Control Hub</figcaption>
+        </figure>
+    </slider-item>
+
+    <slider-item>
+        <figure>
+            <img class="rounded-[2.7px]" src="/Images/designs/1.jpg" alt="Trulli">
+            <figcaption class="text-[14px] font-bold text-center mt-[14px]">Crack Control Hub</figcaption>
+        </figure>
+    </slider-item>
+
+    <slider-item>
+        <figure>
+            <img class="rounded-[2.7px]" src="/Images/designs/1.jpg" alt="Trulli">
+            <figcaption class="text-[14px] font-bold text-center mt-[14px]">Crack Control Hub</figcaption>
+        </figure>
+    </slider-item>
+
+    <slider-item>
+        <figure id="one">
+            <img class="rounded-[2.7px]" src="/Images/designs/1.jpg" alt="Trulli">
+            <figcaption class="text-[14px] font-bold text-center mt-[14px]">Crack Control Hub</figcaption>
+        </figure>
+    </slider-item>
+</Slider>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+    gsap.registerPlugin(ScrollToPlugin);
+
+    const uiDesignScrollBar = document.querySelector('.con')
+    
+    setTimeout(()=>{
+    }, 3000)
+
+    const test = document.querySelector('.test') as HTMLElement
+
+    class SliderItem extends HTMLElement{
+        // slider : HTMLElement
+        constructor(){
+            super()
+            this.tabIndex = 0
+            this.onfocus = ()=>{
+                if(uiDesignScrollBar)
+                gsap.to(uiDesignScrollBar, {duration : 1, scrollTo :{x : this, autoKill : true, offsetX : (uiDesignScrollBar?.clientWidth - this.clientWidth)/2}})
+            }
+        }
+    }
+
+    customElements.define('slider-item',SliderItem)
+</script>
+
