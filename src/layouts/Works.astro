@@ -4,85 +4,40 @@ import Heading from "@compo/typography/Heading.astro";
 import SliderParent2 from "@compo/slider/SliderParent2.astro";
 import Button from '@compo/Button.astro'
 
-import data from '../../src/data/slides.js'
+import data from '../data/slides.js'
 ---
 
-    <Heading line style="mx-4 md:mx-[80px] md:mt-[160px]">Featured Works</Heading>
+    <Heading line style="mx-4 md:mx-[20px] lg:mx-[80px] md:mt-[160px]">Featured Works</Heading>
 
-    <SliderParent2 open>
-        <Heading slot='heading' Level="h2">Pencil Hoops <br> with <span class="text-my-red">NBA</span> & <span class="text-my-red">ESPN</span></Heading>
+    {
+        data.map((item, itemIndex) => 
+        <SliderParent2 open={itemIndex == 0? true : false}>
+            <Heading set:html={item.title} slot='heading' Level="h2"></Heading>
 
-        <div slot="action" class="flex gap-4">
-            <Button slot='action'>About</Button>
-            <Button fill>View Live Site</Button>
-        </div>
-        
-        {data.map((data)=>{
-            return <img src={data.src} class={"aspect-video ite " + data.fill}>
-            </img>
-        })}
-
-        <div class="flex flex-col" slot="base">
-            <div class="flex gap-4 md:flex-col md:gap-0">
-                <p class="text-[14px] font-thin italic">UI/UX Design <br> Interaction Design</p>
-                <p class="text-[14px] font-thin italic">Concept, Basketball <br> March, 2023</p>
+            <div slot="action" class="flex gap-4">
+                <Button slot='action'>About</Button>
+                <Button fill>View Live Site</Button>
             </div>
-        </div>
-    </SliderParent2>
+            
+            {item.slides.map((data)=>{
+                return <img src={data.src}>
+                </img>
+            })}
 
-    <SliderParent2>
-        <Heading slot='heading' Level="h2">Horror Vault <br> with <span class="text-my-green">Spotify</span></Heading>
+            <div class="flex flex-col" slot="base">
+                <div class="flex gap-4 md:flex-col md:gap-0">
+                    {
+                        item.base.map(item =>
+                            <p set:html={item}  class="text-[14px] font-thin italic"></p>
+                        )
+                    }
+                </div>
+            </div>
+        </SliderParent2>
+        )
+    }
 
-        <div slot="action" class="flex gap-4">
-            <Button slot='action'>About</Button>
-            <Button fill>View Live Site</Button>
-        </div>
-        
+   
+    
 
-        {data.map((data)=>{
-            return <img src={data.src} class={"aspect-video ite " + data.fill}>
-            </img>
-        })}
-    </SliderParent2>
 
-    <SliderParent2>
-        <Heading slot='heading' Level="h2">Crack VR <br> with <span class="text-my-blue">Chelsea FC</span></Heading>
-
-        <div slot="action">
-            <Button slot='action'>About</Button>
-        </div>
-        
-
-        {data.map((data)=>{
-            return <img src={data.src} class={"aspect-video ite " + data.fill}>
-            </img>
-        })}
-    </SliderParent2>
-
-    <SliderParent2>
-        <Heading slot='heading' Level="h2">Crack Headphones</Heading>
-
-        <div slot="action">
-            <Button slot='action'>About</Button>
-        </div>
-        
-
-        {data.map((data)=>{
-            return <img src={data.src} class={"aspect-video ite " + data.fill}>
-            </img>
-        })}
-    </SliderParent2>
-
-    <SliderParent2>
-        <Heading slot='heading' Level="h2">Cracklabs.io</Heading>
-
-        <div slot="action">
-            <Button fill>View Live Site</Button>
-        </div>
-        
-
-        {data.map((data)=>{
-            return <img src={data.src} class={"aspect-video ite " + data.fill}>
-            </img>
-        })}
-    </SliderParent2>

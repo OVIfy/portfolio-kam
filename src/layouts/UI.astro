@@ -11,25 +11,56 @@ import BaseScroll from '@compo/BaseScroll.astro'
 
     <BaseScroll/>
 
-    <Heading Level="h3" style="leading-[24px] text-[24px] mb-[24px] mt-[64px]">A Designer with a Passion for Creating <span class="text-my-red underline underline-offset-8">Innovative Products.</span></Heading>
-    <Body>
-        I'm a sucker for all things art - paintings, sculptures, talent, dance, the environment, anything that screams art. When I'm not binging on cartoons or anime, you can find me rollerblading, writing, or taking pictures of my surrounding or working on a new project. And of course, I have a huge soft spot for dogs and Math!......... and Dolphins!!
-    </Body>
+    <article>
+        <div>
+            <section class="flex gap-4">
+                <div class="sm:w-[70%]">
+                    <Heading Level="h3" style="leading-[24px] text-[24px] mb-[24px]">A Designer with a Passion for Creating <span class="text-my-red underline underline-offset-8">Innovative Products.</span></Heading>
+                    <Body>
+                        I'm a sucker for all things art - paintings, sculptures, talent, dance, the environment, anything that screams art. When I'm not binging on cartoons or anime, you can find me rollerblading, writing, or taking pictures of my surrounding or working on a new project. And of course, I have a huge soft spot for dogs and Math!......... and Dolphins!!
+                    </Body>
+                    <p class="mt-6 mb-3 md:mt-[48px] md:mb-[24px]">Interests</p>
+                    <div class="interests text-my-gray-normal grid grid-cols-2 grid-rows-3 md:flex md:gap-[20px]">
+                        <ul class="list-disc list-inside md:flex md:flex-col md:gap-2">
+                            <li><span class="list-it relative -left-3">Art</span></li>
+                            <li><span class="list-it relative -left-3">Anime</span></li>
+                        </ul>
+                        <ul class="list-disc list-inside md:flex md:flex-col md:gap-2">
+                            <li><span class="list-it relative -left-3">Animals</span></li>
+                            <li><span class="list-it relative -left-3">Math,Logic & Puzzles</span></li>
+                        </ul>
+                        <ul class="list-disc list-inside md:flex md:flex-col md:gap-2">
+                            <li><span class="list-it relative -left-3">Photography</span></li>
+                            <li><span class="list-it relative -left-3">Rollerblading</span></li>
+                        </ul>
+    
+                        <ul class="list-disc list-inside md:flex md:flex-col md:gap-2">
+                            <li><span class="list-it relative -left-3">Nature</span></li>
+                            <li><span class="list-it relative -left-3">Video Games</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w-[30%] max sm:flex items-center hidden">
+                    <div class="w-full aspect-square">
+                        <img class="w-full aspect-square border border-white" src="/Images/kamil-art.jpg" />
+                        <div class="w-full aspect-square bg-neutral-900 justify-center items-center inline-flex">
+                            <div class="w-[50px] aspect-square bg-white rounded-full">
+                                <div class="w-full aspect-square bg-center bg-contain bg-no-repeat  bg-[url('/Images/icons/icon-play-circle.svg')]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-    <p class="mt-[48px] mb-[24px]">Interests</p>
-    <div class="interests text-my-gray-normal flex gap-10">
-        <ul class="list-disc list-inside">
-            <li>Art</li>
-            <li>Anime</li>
-            <li>Photography</li>
-            <li>Rollerblading</li>
-        </ul>
-
-        <ul class="list-disc list-inside">
-            <li>Animals</li>
-            <li>Math,Logic & Puzzles</li>
-            <li>Nature</li>
-            <li>Video Games</li>
-        </ul>
-    </div>
+        <div class="w-[300px] hidden">
+            <img class="w-full aspect-square border border-white" src="/Images/kamil-art.jpg" />
+            <div class="w-full aspect-square bg-neutral-900 justify-center items-center inline-flex">
+                <div class="w-[50px] aspect-square bg-white rounded-full">
+                    <div class="w-full aspect-square bg-center bg-contain bg-no-repeat  bg-[url('/Images/icons/icon-play-circle.svg')]"></div>
+                </div>
+            </div>
+        </div>
+    </article>
 </Section>
+
