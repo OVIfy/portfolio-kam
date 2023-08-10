@@ -2,11 +2,13 @@
 import Section from "@compo/Section.astro";
 import Heading from "@compo/typography/Heading.astro";
 ---
-<Section style="border-my-gray-dark border-y-[1px] border-opacity-30">
+<Section style="border-my-gray-dark border-y-[1px] border-opacity-30  relative">
+    <div class="absolute top-0 right-0 left-0 bottom-0 opacity-50 hover:opacity-100 bg-[center_right_20px] md:bg-[center_right_40px] lg:bg-[center_right_80px] bg-contain bg-no-repeat bg-[url('/Images/bgs/hero-bg.png')]"></div>
     <p class="italic ho text-[12px] md:text-[16px] text-my-gray-dark mb-6">Designing The Future, One Pixel At A Time</p>
-    <Heading Level="h2" style="text-[16px] mb-6 max-w-[600px]">I design minimal, easy to navigate and <span class="text-my-red underline underline-offset-8">People-Friendly</span> interfaces.</Heading>
+    <Heading Level="h2" style="text-[16px] md:text-[35px] lg:text-[56px] mb-6 max-w-[600px] lg:max-w-[1000px]">I design minimal, easy to navigate and <span class="text-my-red underline underline-offset-8">People-Friendly</span> interfaces.</Heading>
 
-    <p class="text-my-gray-dark max-w-[600px]">Hi!, My name is Kamil Oseni and I am a Human Interface Designer with a passion for <span class="text-white">interaction design</span>, and I absolutely adore art!.......... and Dogs!!<span class="inline-block w-[24px] aspect-square bg-[url('/Images/icons/icon-paws.svg')] bg-no-repeat bg-contain ml-1"></span></p>
+    <p class="text-my-gray-dark max-w-[500px] lg:max-w-[1000px]">Hi!, My name is Kamil Oseni and I am a Human Interface Designer with a passion for <span class="text-white">interaction design</span>, and I absolutely adore art!.......... and Dogs!!<span class="inline-block w-[24px] aspect-square bg-[url('/Images/icons/icon-paws.svg')] bg-no-repeat bg-contain ml-1"></span></p>
+
 </Section>
 
 
