@@ -64,3 +64,144 @@ import BaseScroll from '@compo/BaseScroll.astro'
     </Section>
 </Section>
 
+<div class="pr-2 pl-2 fixed left-0 right-0 min-h-[100vh] top-0 bg-black bg-opacity-30  flex-col items-center justify-center backdrop hidden"> 
+
+    <div class="bg-white pt-5 pb-8 pr-[26px] pl-[26px] rounded-[16px] modal transform translate-x-[100vw] hidden max-w-[1000px]"> <!--modal-->
+        <div class="md:h-[90vh] max-h-[500px] overflow-y-auto">
+            <div class="mb-4 flex justify-between">
+                <h3 class="text-darkBlue text-[12px] md:text-[24px] font-bold">CRACK Control Hub</h3>
+                <button class="close-modal-btn"><img src="/Images/icons/icon-close.svg" alt="close icon"><span class="opacity-0 absolute">close modal</span></button>
+            </div>
+            <div class="grid grid-cols-4">  <!--images-->
+                <img   src="/Images/designs/1.gif" alt="crack app showcase gif">
+                <img class="col-span-3 self-center justify-self-center w-full"  src="/Images/modals/Frame 91.jpg" alt="crack control hub mockup" srcset="">
+            </div>
+            <div class="mt-4"> <!--content-->
+                <p class="text-[11px] md:text-[17px] tracking-[0.3px] md:tracking-[1px] leading-[24px] md:leading-[40px]">
+                    The CRACK Control Hub is a smart application through which all CRACK devices can be managed and controlled effectively. 
+                </p>
+                <a href="https://www.figma.com/proto/FkY1AidIu4xW5D8XDKc0D2/CRACK?page-id=1%3A5&node-id=485%3A8994&viewport=781%2C596%2C0.18&scaling=min-zoom&starting-point-node-id=485%3A8994&fuid=1121458938703951086" class="text-[8px] md:text-[12px] text-darkBlue underline">Click to view prototype</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white text-black pt-5 pb-8 pr-[26px] pl-[26px] rounded-[16px] modal transform translate-x-[100vw] hidden max-w-[1000px]"> <!--modal-->
+        <div class="md:h-[90vh] max-h-[500px] overflow-y-auto">
+            <div class="mb-4 flex justify-between">
+                <h3 class="text-darkBlue text-[12px] md:text-[24px] font-bold">Glass Website Design</h3>
+                <button class="close-modal-btn"><img src="/Images/icons/icon-close.svg" alt="close icon"><span class="opacity-0 absolute">close modal</span></button>
+            </div>
+            <div class="flex justify-center items-end">  <!--images-->
+                <img width="60%" src="/Images/modals/Mac Studio.jpg" alt="glass website showcase gif">
+                <img width="40%" src="/Images/designs/2.gif" alt="" srcset="">
+            </div>
+            <div class="mt-4"> <!--content-->
+                <p class="text-[11px] md:text-[17px] tracking-[0.3px] md:tracking-[1px] leading-[24px] md:leading-[40px]">
+                    Glass is an interactive fashion website that's designed to feel sleek and modern. One of the cool features is the AR changing room that lets you try on different outfits in augmented reality. I think this will be a hit with most people and also help companies boost sales. 
+                </p>
+                <a target="_blank" href="https://www.figma.com/proto/zKqMqumUXRUwAtNC4joqhZ/Glass-Updated?page-id=6%3A67&node-id=22%3A409&viewport=488%2C98%2C0.06&scaling=min-zoom&starting-point-node-id=22%3A409" class="text-[8px] md:text-[12px] text-darkBlue underline">Click to view prototype</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white text-black pt-5 pb-8 pr-[26px] pl-[26px] rounded-[16px] modal transform translate-x-[100vw] hidden max-w-[1000px]"> <!--modal-->
+        <div class="md:h-[90vh] max-h-[500px] overflow-y-auto">
+            <div class="mb-4 flex justify-between">
+                <h3 class="text-darkBlue text-[12px] md:text-[24px] font-bold">Marketing Dashboard</h3>
+                <button class="close-modal-btn"><img src="./Images/icons/icon-close.svg" alt="close icon"><span class="opacity-0 absolute">close modal</span></button>
+            </div>
+            <div class="flex justify-center items-end">  <!--images-->
+                <img width="60%" src="./Images/modals/Studio-Display-1.jpg" alt="crack app showcase gif">
+                <img width="40%" src="./Images/designs/3.gif" alt="" srcset="">
+            </div>
+            <div class="mt-4"> <!--content-->
+                <p class="text-[11px] md:text-[17px] tracking-[0.3px] md:tracking-[1px] leading-[24px] md:leading-[40px]">
+                    I assisted in the design of a Marketing dashboard design for the Michael Fajemilehin BI consultancy. The dashboard tracks revenue and other important marketing metrics from different stores, based on their utilization of specified marketing channels, to assist in making data-driven decisions.
+                </p>
+                <a href="https://public.tableau.com/app/profile/michael7697/viz/_Marketingdashboard/Dashboard" target="_blank" class="text-[8px] md:text-[12px] text-darkBlue underline">Click to view published dashboard</a>
+                <a target="_blank" href="https://www.figma.com/proto/BAYo0kKnw2jtXbZgITtt8Y/Michael-Dashboard?page-id=0%3A1&node-id=4%3A22&viewport=685%2C485%2C0.2&scaling=min-zoom&starting-point-node-id=4%3A22&fuid=1121458938703951086"><p class="text-[8px] md:text-[12px] text-darkBlue underline block mt-3">Click to view prototype</p></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // const navBtn = document.querySelector('.nav-btn') as HTMLElement;
+    // const navBtnOpen = document.querySelector('.nav-btnOpen') as HTMLElement;
+    // const navMobileMenu = document.querySelector('.nav-menu') as HTMLElement
+    // const closenavBtn = document.querySelector('.nav-btnClose') as HTMLElement
+
+    // import anime from 'animejs/lib/anime.es.js';
+
+    const modalOpeners = document.querySelectorAll('.modal-open') as NodeListOf<Element>
+    const modals = document.querySelectorAll('.modal') as NodeListOf<HTMLElement>
+    const backdrop = document.querySelector('.backdrop') as HTMLElement
+    const modalClosers = document.querySelectorAll('.close-modal-btn')
+    const bod = document.querySelector('body') as HTMLElement
+    let current:HTMLElement
+
+    // navBtn.addEventListener('click',(e)=> {navMobileMenu.style.display = 'block'; navBtnOpen.style.display = 'none'})
+
+    // closenavBtn.addEventListener('click', (e)=> {navMobileMenu.style.display = 'none'; navBtnOpen.style.display = 'block'})
+
+    modalOpeners.forEach((ele, i) => ele.addEventListener('click', e => {
+        modals[i].style.display = 'block'
+        backdrop.style.display = 'flex'
+        modals[i].classList.remove('slideOutModal')
+        modals[i].classList.add('slideInModal')
+
+        current = modals[i]
+        bod.classList.add('hide')
+    }))
+
+    modalClosers.forEach((ele, i)=> ele.addEventListener('click', e => {
+        modals[i].classList.remove('slideInModal')
+        modals[i].classList.add('slideOutModal')
+        setTimeout(()=>{
+            backdrop.style.display = 'none'
+            modals[i].style.display = 'none'    
+            bod.classList.remove('hide')
+        },1000)
+    }))
+    
+    backdrop.addEventListener('click', e => {
+        current.classList.remove('slideInModal')
+        current.classList.add('slideOutModal')
+        setTimeout(()=>{
+            backdrop.style.display = 'none'
+            current.style.display = 'none'   
+            bod.classList.remove('hide') 
+        },1000)
+    })
+
+    modals.forEach((modal) => modal.addEventListener('click', e => e.stopPropagation())) //prevent modal from closing when its clicked
+</script>
+<style>
+    @keyframes modalSlideIn{
+    0%{
+        transform: translateX(100vw);
+    }
+    70%{
+        transform: translateX(-10vw);
+    }100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes modalSlideOut{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(100vw);
+    }
+}
+
+.slideInModal{
+    animation: modalSlideIn 1s cubic-bezier(0, 0, 0.4, 1) forwards;
+}
+
+.slideOutModal{
+    animation: modalSlideOut 1s cubic-bezier(0, 0, 0, 1) forwards;
+}
+</style>
