@@ -6,7 +6,8 @@ import Button from '@compo/Button.astro'
 
 import data from '../data/slides.js'
 ---
-
+<div class="relative">
+    <div class="absolute top-[100px] right-[100px] left-0 h-[150px] opacity-50 hover:opacity-100 bg-[center_right] md:bg-[center_right_40px] lg:bg-[top_right] bg-contain bg-no-repeat bg-[url('/Images/bgs/feature-bg.png')]"></div>
     <Heading line style="mx-4 md:mx-[20px] lg:mx-[80px] md:mt-[160px]">Featured Works</Heading>
 
     {
@@ -36,7 +37,7 @@ import data from '../data/slides.js'
         </SliderParent2>
         )
     }
-
+</div>
    
     
 
