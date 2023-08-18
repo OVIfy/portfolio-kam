@@ -4,7 +4,9 @@ import Heading from "@compo/typography/Heading.astro";
 import Card2 from "@compo/Card2.astro";
 ---
 
-<Section>
+<Section style="relative">
+    <div class="absolute h-full w-full bg-[url('/Images/bgs/skills-bg.png')] bg-[length:90%_10%] md:bg-[length:50%_10%] bg-right-top bg-no-repeat opacity-20 hover:opacity-40 top-[40px] right-[40px]"></div>
+
     <Heading line>Resources</Heading>
 
     <div class="md:flex max-w-[1000px] mx-auto">
@@ -13,7 +15,7 @@ import Card2 from "@compo/Card2.astro";
         <Card2 
             titleText="CRAFTMANSHIP"
             headingText="TOOLS"
-            cardStyle=""
+            cardStyle="text-left"
             noline
         >
             <ul class="text-left list-disc list-inside leading-6 md:leading-8">
@@ -33,7 +35,7 @@ import Card2 from "@compo/Card2.astro";
         <Card2 
             titleText="TALENT & COMPETENCE"
             headingText="SKILLS"
-            cardStyle="md:mt-[62px] shadow-lg"
+            cardStyle="text-left md:mt-[62px] shadow-lg"
             noline
         >
             <p class="font-bold text-black">DESIGN</p>

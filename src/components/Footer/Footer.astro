@@ -7,15 +7,16 @@ const {footerStyle}  =  Astro.props
 
 <footer class={twMerge("bg-primary-color", footerStyle)}>
 
-    <div class="md:grid grid-cols-4 md:mx-5  justify-end lg:mx-20 lg:gap-[5%] lg:pt-[70px] lg:pb-4 border-y-[1px] border-secondary-color border-opacity-50">
+    <div class="md:grid grid-cols-4 md:px-5  justify-end lg:px-20 lg:gap-[5%] lg:pt-[70px] lg:pb-4 border-b-[1px] border-secondary-color border-opacity-50">
         <slot />
     </div>
     <div class="md:py-10 lg:px-20 flex flex-col md:flex-row md:items-center md:justify-between relative">
-        <p class="text-[10px] lg:text-[16px] text-secondary-color font-bold">Designed by Kamil Oseni</p>
+        <p class="text-[10px] lg:text-[16px] text-secondary-color font-bold hidden md:block">Designed by Kamil Oseni</p>
 
-        <div class="flex items-center gap-[16px]">
-            <p class="text-[10px] lg:text-[16px] text-secondary-color font-bold">Back to top</p>
-            <button class="w-[50px] aspect-square bg-center bg-contain bg-no-repeat bg-[url('/Images/icons/icon-back-to-top.svg')]"></button>
+        <div class="flex items-center justify-center gap-[16px] py-4 md:py-0">
+            <p class="text-[10px] lg:text-[16px] text-secondary-color font-bold hidden md:block">Back to top</p>
+            <p class="text-[10px] lg:text-[16px] text-secondary-color font-bold md:hidden">Designed by Kamil Oseni</p>
+            <button class="w-[25px] md:w-[50px] aspect-square bg-center bg-contain bg-no-repeat bg-[url('/Images/icons/icon-back-to-top.svg')]"></button>
         </div>
 
         <div class="py-6 md:p-[1px] text-center  md:bg-gradient-to-r inline-block from-white to-my-red right-3">

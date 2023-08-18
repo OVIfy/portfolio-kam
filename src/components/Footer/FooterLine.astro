@@ -15,7 +15,7 @@ const {headerText, mobContents, deskContents} = Astro.props
         {mobContents && mobContents.map(content => <p set:html={content}></p>)}
     </div>
 </div>
-<div class="bg-transparent hidden md:block text-secondary-color w-full text-center md:text-left">
+<div class="bg-transparent hidden md:hidden text-secondary-color w-full text-center md:text-left">
     <div class=" border-y-[1px] md:border-0 border-secondary-color border-opacity-50 py-6 flex justify-center md:justify-start items-center gap-5">
         <p class="font-bold lg:text-[24px] inline-block md:text-left">{headerText}</p>
         <div class=" w-[12px] inline-block h-[12px] bg-center bg-contain bg-no-repeat bg-[url('/images/icons/icon-drop-down.svg')] md:hidden"></div>
