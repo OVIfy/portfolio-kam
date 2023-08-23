@@ -43,35 +43,24 @@ const {open} = Astro.props
     import { animate, stagger } from "framer-motion/dom";
 
     class Slider extends HTMLElement{
-        content : HTMLElement
-        parentContent : HTMLElement
-        btn : HTMLElement
-        canMove : boolean
-        startX : number | undefined
-        targetX : number | undefined
-        animation : any
-        allChildrenElements : any
+        content : HTMLElement = this.querySelector('.content') as HTMLElement
+        parentContent : HTMLElement = this.querySelector('.p-content') as HTMLElement
+        btn : HTMLElement = this.querySelector('.open-btn') as HTMLElement
+        canMove : boolean = false
+        startX : number | undefined = undefined
+        targetX : number | undefined = undefined
+        animation : any = undefined
+        allChildrenElements : any = this.content.children as HTMLCollection
         colors : any
-        hist : any
-        dir : 'L' | 'R'
-        animationDone : boolean
+        hist : any = [this.allChildrenElements.length - 1, 0]
+        dir : 'L' | 'R' = 'R'
+        animationDone : boolean = true
+        static sliders : Slider[] = []
+        static openSlider : Slider
 
        constructor(){
             super();
-            this.canMove = false;
-            this.startX = undefined
-            this.targetX = undefined
-            this.animation = undefined
-            this.dir = 'R'
-            
-            this.content = this.querySelector('.content') as HTMLElement
-            this.parentContent = this.querySelector('.p-content') as HTMLElement
-            this.allChildrenElements = this.content.children as HTMLCollection
-            this.hist = [this.allChildrenElements.length - 1, 0]
-            this.btn = this.querySelector('.open-btn') as HTMLElement
-            this.openSlide()
             this.btn.addEventListener('click', ()=> this.openSlide())
-            this.animationDone = true
 
             // this.btn.addEventListener('click', (e)=> console.log('horray'))
 
@@ -82,6 +71,9 @@ const {open} = Astro.props
             // this.content.addEventListener('pointerout', (e)=> this.playSlide())
             this.content.addEventListener('pointerdown', (e)=> this.playSlide(true))
    
+            Slider.sliders.push(this)
+            Slider.openSlider = Slider.sliders[0]
+            this.openSlide()
             this.playSlide()
        }
 
@@ -92,27 +84,38 @@ const {open} = Astro.props
                 console.log(this.animationDone, value)
             // if(this.animationDone)
             if(value == true && (this.animationDone || this.animationDone == undefined)){
-                this.animationDone = false
-                let jsAnim = this.parentContent.animate([{maxHeight : '600px'}], {duration : 1000, fill:'forwards'})
-                
-                jsAnim.onfinish = () => animate(children, {scale : [0.9, 1]}, {duration : 1, delay : stagger(0.3)})
-                .then(()=>{
-                    this.animationDone = true
-                })
-                this.btn.animate([{transform : 'rotate(180deg)'}], {duration : 200, fill : 'forwards'})
-                this.removeAttribute("open")
+                this.openSlider()
+                Slider.sliders.forEach(slider => {if(slider !== this) slider.closeSlider()})
             }
             if(value == false && (this.animationDone || this.animationDone == undefined)){
-                this.animationDone = false
-                animate(children, {scale : [1, 0.9]}, {duration : 1})
-                .then(()=>{
-                    this.parentContent.animate([{maxHeight : 0}], {duration : 1000, fill:'forwards'})
-                    this.animationDone = true
-                })
-                // console.log('here')
-                this.btn.animate([{transform : 'rotate(0deg)'}], {duration : 200, fill : 'forwards'})
-                this.setAttribute("open", "")
+                this.closeSlider()
             }
+       }
+
+       closeSlider(){
+            let children = this.querySelectorAll('.content img') as NodeListOf<HTMLElement>
+            this.animationDone = false
+            animate(children, {scale : [1, 0.9]}, {duration : 1})
+            .then(()=>{
+                this.parentContent.animate([{maxHeight : 0}], {duration : 1000, fill:'forwards'})
+                this.animationDone = true
+            })
+            // console.log('here')
+            this.btn.animate([{transform : 'rotate(0deg)'}], {duration : 200, fill : 'forwards'})
+            this.setAttribute("open", "")
+       }
+
+       openSlider(){
+            let children = this.querySelectorAll('.content img') as NodeListOf<HTMLElement>
+            this.animationDone = false
+            let jsAnim = this.parentContent.animate([{maxHeight : '600px'}], {duration : 1000, fill:'forwards'})
+            
+            jsAnim.onfinish = () => animate(children, {scale : [0.9, 1]}, {duration : 1, delay : stagger(0.3)})
+            .then(()=>{
+                this.animationDone = true
+            })
+            this.btn.animate([{transform : 'rotate(180deg)'}], {duration : 200, fill : 'forwards'})
+            this.removeAttribute("open")
        }
 
        //this function takes the last element to the begining if we are at the end of the slide 
@@ -140,7 +143,7 @@ const {open} = Astro.props
        }
 
        playSlide(pause? : boolean){
-
+        console.log('here')
         if(pause){
             this.animation.cancel()
             return

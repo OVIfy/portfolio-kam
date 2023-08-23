@@ -64,7 +64,10 @@ import BaseScroll from '@compo/BaseScroll.astro'
     </Section>
 </Section>
 
-<div class="pr-2 pl-2 fixed left-0 right-0 min-h-[100vh] top-0 bg-black bg-opacity-30  flex-col items-center justify-center backdrop hidden"> 
+                                                            <!-- modals -->
+                                                    <!--  -->   
+                                                                           <!--  -->
+<div class="pr-2 pl-2 fixed left-0 right-0 min-h-[100vh] top-0 bg-black bg-opacity-30  flex-col items-center justify-center backdrop hidden z-[30]"> 
 
     <div class="bg-white text-black pt-5 pb-8 pr-[26px] pl-[26px] rounded-[16px] modal transform translate-x-[100vw] hidden max-w-[1000px]"> <!--modal-->
         <div class="md:h-[90vh] max-h-[500px] overflow-y-auto">
@@ -133,6 +136,10 @@ import BaseScroll from '@compo/BaseScroll.astro'
 
     // import anime from 'animejs/lib/anime.es.js';
 
+        // navBtn.addEventListener('click',(e)=> {navMobileMenu.style.display = 'block'; navBtnOpen.style.display = 'none'})
+
+    // closenavBtn.addEventListener('click', (e)=> {navMobileMenu.style.display = 'none'; navBtnOpen.style.display = 'block'})
+
     const modalOpeners = document.querySelectorAll('.modal-open') as NodeListOf<Element>
     const modals = document.querySelectorAll('.modal') as NodeListOf<HTMLElement>
     const backdrop = document.querySelector('.backdrop') as HTMLElement
@@ -140,19 +147,40 @@ import BaseScroll from '@compo/BaseScroll.astro'
     const bod = document.querySelector('body') as HTMLElement
     let current:HTMLElement
 
-    // navBtn.addEventListener('click',(e)=> {navMobileMenu.style.display = 'block'; navBtnOpen.style.display = 'none'})
 
-    // closenavBtn.addEventListener('click', (e)=> {navMobileMenu.style.display = 'none'; navBtnOpen.style.display = 'block'})
+
+    /* additional logic to stop modals from opening on scroll starts here */
+    let mouseState = {
+        mousedown : false,
+        mouseOverImmediatelyAfterDown : false
+    }
+
+    bod.addEventListener('mouseup', () => mouseState.mousedown = false)
+
+    modalOpeners.forEach((ele , i) => ele.addEventListener('mousedown', e => {
+        mouseState.mousedown = true
+    }))
+
+    modalOpeners.forEach((ele , i) => ele.addEventListener('mousemove', e => {
+        if(mouseState.mousedown === true) mouseState.mouseOverImmediatelyAfterDown = true
+        else mouseState.mouseOverImmediatelyAfterDown = false
+    }))
+    /* additional logic to stop modals from opening on scroll stops here */
+
 
     modalOpeners.forEach((ele, i) => ele.addEventListener('click', e => {
-        modals[i].style.display = 'block'
-        backdrop.style.display = 'flex'
-        modals[i].classList.remove('slideOutModal')
-        modals[i].classList.add('slideInModal')
+        if(mouseState.mouseOverImmediatelyAfterDown === false){
+            modals[i].style.display = 'block'
+            backdrop.style.display = 'flex'
+            modals[i].classList.remove('slideOutModal')
+            modals[i].classList.add('slideInModal')
 
-        current = modals[i]
-        bod.classList.add('hide')
+            current = modals[i]
+            bod.classList.add('hide')
+        }else mouseState = {mousedown:false, mouseOverImmediatelyAfterDown:false}
     }))
+
+
 
     modalClosers.forEach((ele, i)=> ele.addEventListener('click', e => {
         modals[i].classList.remove('slideInModal')

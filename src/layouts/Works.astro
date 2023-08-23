@@ -9,7 +9,7 @@ import data from '../data/slides.js'
 <div class="relative">
     <div class="absolute h-full w-full bg-[url('/Images/bgs/feature-bg.png')] bg-[length:90%_10%] md:bg-[length:60%_10%] bg-right-top bg-no-repeat opacity-20 hover:opacity-100 top-[40px] right-[40px]"></div>
     <Heading line style="mx-4 md:mx-[20px] lg:mx-[80px] md:mt-[160px]">Featured Works</Heading>
-
+    <div class="relative slider-parent">
     {
         data.map((item, itemIndex) => 
         <SliderParent2 open={itemIndex == 0? true : false}>
@@ -37,7 +37,15 @@ import data from '../data/slides.js'
         </SliderParent2>
         )
     }
+    </div>
 </div>
+
+<script>
+//brute force logic for closing already open slider if another is opened
+    const sliderParent = document.querySelector('.slider-parent') as HTMLElement
+
+    sliderParent.addEventListener('slideropened',(e) => console.log('one of children sliders was opened'))
+</script>
    
     
 

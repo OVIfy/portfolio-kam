@@ -2,7 +2,7 @@
 import NavItem from '@compo/nav/NavItem.astro'
 import NavItems from '@compo/nav/NavItems.astro'
 import Button from '@compo/Button.astro'
-import LightBtn from '@compo/LightBtn.svelte'
+// import LightBtn from '@compo/LightBtn.svelte'
 import IconDeck from '@compo/IconDeck.astro'
 
 const {index = 0} = Astro.props
@@ -32,7 +32,7 @@ const {index = 0} = Astro.props
    </NavItems>
 </nav>
 
-<nav class="md:hidden bg-black mob-nav hide-nav transform absolute left-0 top-0 pl-4 pt-[68px] pb-[33px] pr-8 bg-primary-color z-50 rounded-r-[40px] shadow-[2px_2px_10px] shadow-secondary-color/[0.2]">
+<nav class="md:hidden  bg-black mob-nav hide-nav transform absolute left-0 -translate-x-[300px] top-0 pl-4 pt-[68px] pb-[33px] pr-8 bg-primary-color z-50 rounded-r-[40px] shadow-[2px_2px_2px] shadow-my-red/[0.5]">
      <!-- first part -->
      <div class="flex justify-end items-center">
           <!-- <div class="w-[59px] h-[64px] bg-[url('/Images/fire.gif')] bg-cover bg-no-repeat bg-[center_left_-15px] bg-black bg-blend-hard-light "></div> -->
